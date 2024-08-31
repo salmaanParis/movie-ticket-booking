@@ -1,0 +1,162 @@
+<div class="movie-list">
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 1</h5>
+                        <p><strong>Number:</strong> 001</p>
+                        <p>A brief description of Movie 1.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 2</h5>
+                        <p><strong>Number:</strong> 002</p>
+                        <p>A brief description of Movie 2.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 3</h5>
+                        <p><strong>Number:</strong> 003</p>
+                        <p>A brief description of Movie 3.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 4</h5>
+                        <p><strong>Number:</strong> 004</p>
+                        <p>A brief description of Movie 4.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 5</h5>
+                        <p><strong>Number:</strong> 005</p>
+                        <p>A brief description of Movie 5.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 6</h5>
+                        <p><strong>Number:</strong> 006</p>
+                        <p>A brief description of Movie 6.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div id="pagination" class="pagination"></div>
+
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 7</h5>
+                        <p><strong>Number:</strong> 007</p>
+                        <p>A brief description of Movie 7.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 8</h5>
+                        <p><strong>Number:</strong> 008</p>
+                        <p>A brief description of Movie 8.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 9</h5>
+                        <p><strong>Number:</strong> 009</p>
+                        <p>A brief description of Movie 9.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 10</h5>
+                        <p><strong>Number:</strong> 010</p>
+                        <p>A brief description of Movie 10.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 11</h5>
+                        <p><strong>Number:</strong> 011</p>
+                        <p>A brief description of Movie 11.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 12</h5>
+                        <p><strong>Number:</strong> 012</p>
+                        <p>A brief description of Movie 12.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 13</h5>
+                        <p><strong>Number:</strong> 013</p>
+                        <p>A brief description of Movie 13.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 14</h5>
+                        <p><strong>Number:</strong> 014</p>
+                        <p>A brief description of Movie 14.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 15</h5>
+                        <p><strong>Number:</strong> 015</p>
+                        <p>A brief description of Movie 15.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 16</h5>
+                        <p><strong>Number:</strong> 016</p>
+                        <p>A brief description of Movie 16.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 17</h5>
+                        <p><strong>Number:</strong> 017</p>
+                        <p>A brief description of Movie 17.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 18</h5>
+                        <p><strong>Number:</strong> 018</p>
+                        <p>A brief description of Movie 18.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 19</h5>
+                        <p><strong>Number:</strong> 019</p>
+                        <p>A brief description of Movie 19.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 20</h5>
+                        <p><strong>Number:</strong> 020</p>
+                        <p>A brief description of Movie 20.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>

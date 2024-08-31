@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies List</title>
+    <link rel="stylesheet" href="/stylesheets/highlight.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            position: fixed;
+            width: 100%;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #333;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            top: 60px; /* Adjusted for navbar height */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+            color: white;
+        }
+
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+        }
+
+        .movie-list {
+            margin: 20px 0;
+        }
+
+        .movie-item {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .movie-item .description {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .movie-item .view-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .movie-item .view-button:hover {
+            background-color: #0056b3;
+        }
+
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                box-shadow: none;
+            }
+            .sidebar a {
+                float: left;
+                padding: 10px 16px;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .sidebar.active {
+                display: block;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 60px; /* Adjusted for navbar height */
+            background-color: #007bff;
+            padding: 10px;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .content-header h1 {
+            margin: 0;
+        }
+
+        .btn-green {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-green:hover {
+            background-color: #218838;
+        }
+
+        .dropdown-container {
+            display: none;
+            background-color: #f9f9f9;
+            padding-left: 8px;
+        }
+
+        .dropdown-container a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #000;
+            display: block;
+        }
+
+        .dropdown-container a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown-btn::after {
+            content: '\25BC';
+            float: right;
+            margin-right: 10px;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+            margin-left: 100px;
+        }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+
+        .pagination button.active {
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        User
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a class="active" href="movies.html">Movies</a>
+        <a href="user.html">Users</a>
+        <a href="subscription.html">Subscriptions</a>
+        <a href="#" class="dropdown-btn">Report</a>
+        <div class="dropdown-container">
+            <a href="revenue.html">Revenue</a>
+            <a href="subscribers.html">Subscribers</a>
+            <a href="views.html">View Count</a>
+            <a href="rating.html">Rating</a>
+        </div>
+    </div>
+    
+
+    <!-- Content -->
+    <div class="content">
+        <div class="container">
+            <div class="content-header">
+                <h1>Movies List</h1>
+                <a href="Addmovie.html" class="btn btn-green">Add Movie</a>
+            </div>
+            <div id="movie-list" class="movie-list">
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 1</h5>
+                        <p><strong>Number:</strong> 001</p>
+                        <p>A brief description of Movie 1.</p>
+                    </div>
+                    <a href="Editmovie.html" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 2</h5>
+                        <p><strong>Number:</strong> 002</p>
+                        <p>A brief description of Movie 2.</p>
+                    </div>
+                    <a href="Editmovie.html"" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 3</h5>
+                        <p><strong>Number:</strong> 003</p>
+                        <p>A brief description of Movie 3.</p>
+                    </div>
+                    <a href="Editmovie.html"" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 4</h5>
+                        <p><strong>Number:</strong> 004</p>
+                        <p>A brief description of Movie 4.</p>
+                    </div>
+                    <a href="Editmovie.html"" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 5</h5>
+                        <p><strong>Number:</strong> 005</p>
+                        <p>A brief description of Movie 5.</p>
+                    </div>
+                    <a href="Editmovie.html"" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 6</h5>
+                        <p><strong>Number:</strong> 006</p>
+                        <p>A brief description of Movie 6.</p>
+                    </div>
+                    <a href="Editmovie.html"" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 7</h5>
+                        <p><strong>Number:</strong> 007</p>
+                        <p>A brief description of Movie 7.</p>
+                    </div>
+                    <a href="Editmovie.html"" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 8</h5>
+                        <p><strong>Number:</strong> 008</p>
+                        <p>A brief description of Movie 8.</p>
+                    </div>
+                    <a href="Editmovie.html"" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 9</h5>
+                        <p><strong>Number:</strong> 009</p>
+                        <p>A brief description of Movie 9.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 10</h5>
+                        <p><strong>Number:</strong> 010</p>
+                        <p>A brief description of Movie 10.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 11</h5>
+                        <p><strong>Number:</strong> 011</p>
+                        <p>A brief description of Movie 11.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 12</h5>
+                        <p><strong>Number:</strong> 012</p>
+                        <p>A brief description of Movie 12.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 13</h5>
+                        <p><strong>Number:</strong> 013</p>
+                        <p>A brief description of Movie 13.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 14</h5>
+                        <p><strong>Number:</strong> 014</p>
+                        <p>A brief description of Movie 14.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 15</h5>
+                        <p><strong>Number:</strong> 015</p>
+                        <p>A brief description of Movie 15.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 16</h5>
+                        <p><strong>Number:</strong> 016</p>
+                        <p>A brief description of Movie 16.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 17</h5>
+                        <p><strong>Number:</strong> 017</p>
+                        <p>A brief description of Movie 17.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 18</h5>
+                        <p><strong>Number:</strong> 018</p>
+                        <p>A brief description of Movie 18.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 19</h5>
+                        <p><strong>Number:</strong> 019</p>
+                        <p>A brief description of Movie 19.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div class="movie-item">
+                    <div class="description">
+                        <h5>Movie 20</h5>
+                        <p><strong>Number:</strong> 020</p>
+                        <p>A brief description of Movie 20.</p>
+                    </div>
+                    <a href="#" class="view-button">View</a>
+                </div>
+                <div id="pagination" class="pagination"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+$(document).ready(function() {
+            $('.navbar-toggler').click(function() {
+                $('.sidebar').toggleClass('active');
+            });
+        }); 
+        
+        const itemsPerPage = 4; // Adjust as needed
+        let currentPage = 1;
+
+        function showPage(page) {
+            const movieList = document.getElementById("movie-list");
+            const movieItems = movieList.getElementsByClassName("movie-item");
+            const totalPages = Math.ceil(movieItems.length / itemsPerPage);
+
+            currentPage = page;
+
+            for (let i = 0; i < movieItems.length; i++) {
+                movieItems[i].style.display = "none";
+            }
+
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+
+            for (let i = start; i < end && i < movieItems.length; i++) {
+                movieItems[i].style.display = "flex";
+            }
+
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.innerHTML = i;
+                button.classList.add("page-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", function() {
+                    showPage(i);
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            showPage(currentPage);
+        });
+
+        document.querySelector('.dropdown-btn').addEventListener('click', function() {
+            this.classList.toggle('active');
+            const dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
